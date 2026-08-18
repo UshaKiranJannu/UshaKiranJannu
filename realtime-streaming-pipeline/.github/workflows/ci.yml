@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Java (required for PySpark)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          # Install only what the tests need — skip airflow/dbt for CI speed
+          pip install pyspark==3.5.1 kafka-python-ng==2.2.3 faker==25.0.0 \
+                      python-dotenv==1.0.1 loguru==0.7.2 \
+                      pytest==8.2.0 pytest-mock==3.14.0
+
+      - name: Run unit tests
+        env:
+          # Dummy env vars so pipeline_config.py doesn't error on import
+          KAFKA_BOOTSTRAP_SERVERS: localhost:9092
+          SNOWFLAKE_ACCOUNT: dummy
+          SNOWFLAKE_USER: dummy
+          SNOWFLAKE_PASSWORD: dummy
+        run: pytest tests/ -v --tb=short

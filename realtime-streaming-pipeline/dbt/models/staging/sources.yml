@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  - name: transactions
+    # DuckDB: database = the .duckdb file name (without extension), schema = main
+    # Snowflake: database = FINANCE_DB, schema = TRANSACTIONS
+    database: fraud_analytics
+    schema: main
+    description: "Raw tables loaded from Spark output Parquet files via load_parquet.py."
+    tables:
+      - name: raw_transactions
+        description: "Every transaction event enriched with fraud score by Spark."
+        columns:
+          - name: transaction_id
+            tests: [unique, not_null]
+          - name: account_id
+            tests: [not_null]
+          - name: amount
+            tests: [not_null]
+          - name: fraud_score
+            description: "0–99 risk score."
+
+      - name: flagged_transactions
+        description: "Only transactions where fraud_score > 0."
+        columns:
+          - name: transaction_id
+            tests: [unique, not_null]
+          - name: fraud_score
+            tests: [not_null]

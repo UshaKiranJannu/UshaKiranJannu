@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: fraud_account_risk_mart
+    description: >
+      One row per account. Combines flagged-transaction counts, fraud scores,
+      and lifetime transaction volume to produce a full risk profile.
+      BI tools query this table directly.
+    columns:
+      - name: account_id
+        description: "Bank account identifier."
+        tests:
+          - unique
+          - not_null
+      - name: fraud_rate_pct
+        description: "Percentage of this account's transactions that were flagged."
+        tests:
+          - not_null
+      - name: is_high_risk
+        description: "TRUE when max_fraud_score >= 66."
+        tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+  - name: transaction_volume_mart
+    description: >
+      Hourly transaction volume broken down by type and merchant category.
+      Used for operational dashboards tracking pipeline throughput and fraud rates.
+    columns:
+      - name: txn_hour
+        tests: [not_null]
+      - name: txn_count
+        tests: [not_null]

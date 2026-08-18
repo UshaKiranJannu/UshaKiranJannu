@@ -1,0 +1,20 @@
+fraud_analytics:
+  target: dev
+  outputs:
+    # ── Local DuckDB (no cloud account needed) ────────────────────────────────
+    dev:
+      type: duckdb
+      path: "{{ env_var('DBT_DUCKDB_PATH', '../fraud_analytics.duckdb') }}"
+      threads: 4
+
+    # ── Snowflake (fill in .env and switch target to prod) ────────────────────
+    prod:
+      type: snowflake
+      account:   "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user:      "{{ env_var('SNOWFLAKE_USER') }}"
+      password:  "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role:      "{{ env_var('SNOWFLAKE_ROLE', 'SYSADMIN') }}"
+      database:  "{{ env_var('SNOWFLAKE_DATABASE', 'FINANCE_DB') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', 'COMPUTE_WH') }}"
+      schema:    TRANSACTIONS
+      threads:   4
