@@ -14,7 +14,7 @@ I'm a Data Engineer with 5+ years of experience designing and building scalable,
 
 I care most about pipelines that are **correct, observable, and trustworthy** — not just ones that run. Recent work has focused on real-time streaming with exactly-once semantics, schema evolution with Iceberg, and cutting pipeline latency and manual ops overhead through better orchestration.
 
-- 🔭 Currently working on: production streaming pipelines at **Charter Communications**
+
 - 🌱 Deepening my skills in: DBT-based analytics engineering & GenAI-assisted data tooling
 - 💬 Ask me about: Spark Structured Streaming, Kafka, Airflow, Snowflake/DBT, AWS Glue
 - 📫 Reach me: jannu.usha.kiran12@gmail.com
@@ -37,26 +37,21 @@ I care most about pipelines that are **correct, observable, and trustworthy** �
 
 ---
 
-### 📌 Featured Projects
+### 📌 Featured Project
 
-| Project | Description | Stack |
-|---|---|---|
-| [**realtime-streaming-pipeline**](https://github.com/your-username/realtime-streaming-pipeline) | Kafka → Spark Structured Streaming pipeline with windowed aggregation and watermarking to handle late-arriving events; cut simulated end-to-end latency by 30%. | Kafka, Spark, Docker |
-| [**batch-elt-snowflake**](https://github.com/your-username/batch-elt-snowflake) | End-to-end batch ELT pipeline: raw data → S3 → PySpark transform → Snowflake, orchestrated with Airflow. | Airflow, PySpark, Snowflake |
-| [**dbt-analytics-marts**](https://github.com/your-username/dbt-analytics-marts) | Analytics engineering project modeling raw data into staging → intermediate → mart layers in dbt, with tests and auto-generated docs. | dbt, Snowflake, SQL |
-| [**pipeline-cicd**](https://github.com/your-username/pipeline-cicd) | GitHub Actions CI/CD for linting, testing, and deploying data pipelines. | GitHub Actions, Docker |
+[#-featured-project](#-featured-project)
 
-*(Update these links once each repo is live — pin them on your profile for visibility.)*
+**[realtime-streaming-pipeline](https://github.com/UshaKiranJannu/UshaKiranJannu/tree/main/realtime-streaming-pipeline)**
 
----
+Kafka → Spark Structured Streaming pipeline for financial fraud detection — rule-based scoring, sliding-window velocity tracking, and dbt models for analytics on top of Snowflake, orchestrated with Airflow and tested via GitHub Actions CI.
+
+**Stack:** Kafka · Spark Structured Streaming · Airflow · dbt · Snowflake · Docker · GitHub Actions
 
 ### 📊 GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=your-username&show_icons=true&theme=default" height="165">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=your-username&layout=compact" height="165">
+  <img src="https://github-readme-stats.vercel.app/api?username=UshaKiranJannu&show_icons=true&theme=default" height="165">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=UshaKiranJannu&layout=compact" height="165">
 </p>
-
----
 
 <p align="center"><i>Open to Data Engineering roles — let's connect!</i></p>
